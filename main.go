@@ -16,5 +16,6 @@ func getUserName() string {
 }
 
 func main() {
-	fmt.Println("Hello world %s", getUserName())
+	username := getUserName()
+	fmt.Printf("Hello world %s", username)
 }
