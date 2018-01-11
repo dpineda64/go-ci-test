@@ -1,20 +1,27 @@
 package main
 
 import (
+	"errors"
 	"fmt"
-	"os"
 )
 
-func getUserName() string {
-	username := os.Getenv("USER")
-
-	if username != "" {
-		username = os.Getenv("USERNAME")
+// ReturnsMessage expects string
+func ReturnsMessage(name string) (string, error) {
+	if name == "" {
+		return "", errors.New("missing name")
 	}
 
-	return username
+	message := fmt.Sprintf("Hello %s ", name)
+
+	return message, nil
 }
 
 func main() {
-	fmt.Println("Hello world %s", getUserName())
+	message, err := ReturnsMessage("dp27664")
+
+	if err != nil {
+		fmt.Printf(err.Error())
+	}
+
+	fmt.Println(message)
 }

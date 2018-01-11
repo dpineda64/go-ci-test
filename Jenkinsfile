@@ -10,9 +10,14 @@ pipeline{
         checkout scm
       }
     }
+    stage('install deps'){
+        steps {
+            sh 'go get -t -v ./...'
+        }
+    }
     stage('test go'){
       steps {
-        sh 'go --version'
+        sh 'go test -v ./...'
       }
     }
   }
